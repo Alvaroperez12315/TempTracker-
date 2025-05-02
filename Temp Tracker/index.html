@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TempTracker</title>
+    <link rel="icon" href="imagenes/favicon.png">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="contenedor">
+        <div class="buscador">
+            <input type="text" id="input-ciudad" placeholder="Escribe una ciudad">
+            <button onclick="buscarClima()">
+                <img src="imagenes/buscar.png" alt="Buscar">
+            </button>
+        </div>
+        <div class="clima-info" id="clima-info">
+            <h2 id="ciudad"></h2>
+            <img id="icono-clima" src="" alt="Icono del clima">
+            <p id="descripcion"></p>
+            <p id="temperatura">
+                <img src="imagenes/clima-ejemplo.webp" alt="Temperatura" style="width:16px; vertical-align:middle;"> 
+                <span></span>
+            </p>
+            <p id="humedad">
+                <img src="imagenes/humedad.png" alt="Humedad" style="width:16px; vertical-align:middle;"> 
+                <span></span>
+            </p>
+            <p id="viento">
+                <img src="imagenes/viento.png" alt="Viento" style="width:16px; vertical-align:middle;"> 
+                <span></span>
+            </p>
+        </div>
+    </div>
+
+    <script>
+    const claveApi = "5d05784b35234799bac54506250205"; // Reemplaza con tu API Key de WeatherAPI
+    const idioma = "es";
+
+    async function buscarClima() {
+        const ciudad = document.querySelector("#input-ciudad").value;
+        const apiClimaActual = `https://api.weatherapi.com/v1/current.json?q=${ciudad}&lang=${idioma}&key=${claveApi}`;
+
+        try {
+            const respuesta = await fetch(apiClimaActual);
+            const data = await respuesta.json();
+            mostrarClima(data);
+        } catch (error) {
+            console.error("Error al obtener datos del clima:", error);
+        }
+    }
+
+    function mostrarClima(data) {
+        document.querySelector("#clima-info").style.display = "block";
+        document.querySelector("#ciudad").textContent = data.location.name + ", " + data.location.country;
+        document.querySelector("#icono-clima").src = "https:" + data.current.condition.icon;
+        document.querySelector("#descripcion").textContent = data.current.condition.text;
+        document.querySelector("#temperatura span").textContent = `Temperatura: ${data.current.temp_c}°C`;
+        document.querySelector("#humedad span").textContent = `Humedad: ${data.current.humidity}%`;
+        document.querySelector("#viento span").textContent = `Viento: ${data.current.wind_kph} km/h`;
+    }
+    </script>
+</body>
+</html>

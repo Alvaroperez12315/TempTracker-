@@ -1,0 +1,98 @@
+/* Estilos globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: #1e1e1e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Contenedor principal */
+.contenedor {
+    background: linear-gradient(135deg, #00c9a7, #845ec2);
+    padding: 30px;
+    border-radius: 20px;
+    width: 90%;
+    max-width: 400px;
+    color: white;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+}
+
+/* Buscador */
+.buscador {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: white;
+    border-radius: 30px;
+    padding: 5px 10px;
+    margin-bottom: 20px;
+}
+
+.buscador input {
+    flex: 1;
+    border: none;
+    outline: none;
+    padding: 10px;
+    border-radius: 30px;
+    font-size: 16px;
+}
+
+.buscador button {
+    background: white;
+    border: none;
+    cursor: pointer;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.buscador button img {
+    width: 20px;
+    height: 20px;
+}
+
+/* Info clima */
+#clima-info {
+    display: none;
+}
+
+#descripcion {
+    font-style: italic;
+    margin-bottom: 10px;
+}
+
+#icono-clima {
+    width: 80px;
+    height: 80px;
+    margin-bottom: 10px;
+}
+
+#temperatura {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#ciudad {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+#humedad, #viento {
+    display: inline-block;
+    margin: 10px;
+}
+
+#humedad img, #viento img {
+    width: 20px;
+    vertical-align: middle;
+    margin-right: 5px;
+}
